@@ -89,31 +89,17 @@
   .cta-sub{margin-top:14px; font-size:13px; color:var(--muted);}
 
   /* VSL placeholder */
-  .vsl-box{
+  .vsl-wrap{
     max-width:720px;
     margin:40px auto 44px;
     aspect-ratio:16/9;
-    border:2px dashed rgba(244,255,61,0.55);
     border-radius:20px;
-    background:rgba(244,255,61,0.05);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    padding:24px;
+    overflow:hidden;
+    border:1px solid rgba(244,255,61,0.35);
+    box-shadow:0 0 40px rgba(244,255,61,0.15);
+    background:#000;
   }
-  .vsl-box .play{
-    width:64px; height:64px;
-    border-radius:50%;
-    background:var(--neon);
-    display:flex; align-items:center; justify-content:center;
-    font-size:24px;
-    color:#0A0A0A;
-    box-shadow:0 0 30px rgba(244,255,61,0.4);
-  }
-  .vsl-box h3{font-size:16px; font-weight:700; color:var(--text);}
-  .vsl-box p{font-size:13px; color:var(--muted); max-width:420px;}
+  .vsl-wrap iframe{width:100%; height:100%; display:block; border:0;}
 
   /* Section generic */
   section{padding:80px 0;}
@@ -225,10 +211,8 @@
     <div class="wrap hero-promo">
       <h1>Los <span class="hl">5 pasos</span> para convertirte en un cristiano integral</h1>
 
-      <div class="vsl-box">
-        <div class="play">▶</div>
-        <h3>Espacio para el VSL</h3>
-        <p>Aquí va el video de presentación de Luz y Vida Music. Graba y reemplaza este bloque por el video final.</p>
+      <div class="vsl-wrap">
+        <iframe id="vslPlayer" src="https://player.vimeo.com/video/1217801155?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=vslPlayer&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1" width="1920" height="1080" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="VSL Luz y Vida Music"></iframe>
       </div>
 
       <span class="eyebrow">Comunidad Luz y Vida Music</span>
@@ -339,6 +323,21 @@
       <p>© 2026 Luz y Vida Music. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <script>
+    (function(){
+      var iframe = document.getElementById('vslPlayer');
+      if (!iframe || typeof Vimeo === 'undefined') return;
+      var player = new Vimeo.Player(iframe);
+      player.setPlaybackRate(1.3).catch(function(){});
+      player.ready().then(function(){
+        player.setPlaybackRate(1.3);
+        player.setMuted(true);
+        player.play().catch(function(){});
+      });
+    })();
+  </script>
 
 </body>
 </html>
